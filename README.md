@@ -36,14 +36,15 @@ docker compose up -d
 ```
 ### Список уязвимостей
 
-#	Уязвимость	Вес
-1	Broken Access Control (IDOR)	2
-2	SQL Injection	9
-3	Stored XSS	4
-4	Path Traversal	2
-5	XML External Entity (XXE)	2
-6	Server-Side Request Forgery (SSRF)	6
-7	Insecure Deserialization	8
-8	Log Injection (JNDI)	2
-9	Race Condition	2
-10	Prototype Pollution	3
+| # | Уязвимость | Вес |
+|---|-----------|-----|
+| 1 | Broken Access Control (IDOR) | 2 |
+| 2 | SQL Injection | 9 |
+| 3 | Stored XSS | 4 |
+| 4 | Path Traversal | 2 |
+| 5 | XML External Entity (XXE) | 2 |
+| 6 | Server-Side Request Forgery (SSRF) | 6 |
+| 7 | Insecure Deserialization | 8 |
+| 8 | Log Injection (JNDI) | 2 |
+| 9 | Race Condition | 2 |
+| 10 | Prototype Pollution | 3 |
