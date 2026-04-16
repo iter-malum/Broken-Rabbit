@@ -1,0 +1,28 @@
+# FILE: backend/src/main/resources/application.yml
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${SPRING_DATASOURCE_URL:db:5432/brkrb_db}
+    username: ${SPRING_DATASOURCE_USERNAME:brkrb_usr}
+    password: ${SPRING_DATASOURCE_PASSWORD:p@ssw0rd!}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  redis:
+    host: ${SPRING_REDIS_HOST:redis}
+    port: ${SPRING_REDIS_PORT:6379}
+    lettuce:
+      pool:
+        max-active: 10
+
+app:
+  jwt:
+    secret: brkrb_s3cr3t_k3y_!@#
+    expiration: 86400000
+  rabbit:
+    salt: m3ch4n1c4l_fluff
+    default-ear-dir: -1

@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: brkrb_db
+      POSTGRES_USER: brkrb_usr
+      POSTGRES_PASSWORD: p@ssw0rd!
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - brkrb_net
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "16379:6379"
+    networks:
+      - brkrb_net
+
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/brkrb_db
+      SPRING_DATASOURCE_USERNAME: brkrb_usr
+      SPRING_DATASOURCE_PASSWORD: p@ssw0rd!
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      SPRING_JPA_HIBERNATE_DDL_AUTO: create-drop
+      SPRING_JPA_SHOW_SQL: "false"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - brkrb_net
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - brkrb_net
+
+volumes:
+  pgdata:
+networks:
+  brkrb_net:
+    driver: bridge
